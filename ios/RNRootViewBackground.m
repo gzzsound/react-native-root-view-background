@@ -18,5 +18,27 @@ RCT_EXPORT_METHOD(setBackground:(float)red green:(float)green blue:(float)blue a
 
 RCT_EXPORT_MODULE()
 
+- (UIViewController *)currentViewController {
+  UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+  UIViewController *currentViewController = [self currentViewControllerFromViewController:rootViewController];
+  return currentViewController;
+}
+
+- (UIViewController *)currentViewControllerFromViewController:(UIViewController *)viewController {
+  if ([viewController isKindOfClass:UINavigationController.class]) {
+    return [self currentViewControllerFromViewController:((UINavigationController *)viewController).visibleViewController];
+  }
+  else if ([viewController isKindOfClass:UITabBarController.class]) {
+    return [self currentViewControllerFromViewController:((UITabBarController *)viewController).selectedViewController];
+  }
+  else {
+    if (viewController.presentedViewController) {
+      return [self currentViewControllerFromViewController:viewController.presentedViewController];
+    }
+    else {
+      return viewController;
+    }
+  }
+}
+
 @end
-  
