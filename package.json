@@ -1,7 +1,7 @@
 {
   "name": "react-native-root-view-background",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "Allow background configuration for root view",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
